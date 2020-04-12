@@ -100,7 +100,7 @@ const SiteNavMenu = () => (
         siteMetadata: { navMenuLinks },
       },
     }) => (
-      <Menu width="450px" styles={styles}>
+      <Menu width="400px" styles={styles}>
         {navMenuLinks.map((entry, idx) => (
           <React.Fragment key={`navmenuitem-container-${idx}`}>
             <MenuLink from="navmenu" to={entry.link} key={`navmenuitem-${idx}`}>
