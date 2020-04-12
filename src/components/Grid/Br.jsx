@@ -1,7 +1,7 @@
-import styled, { display, propTypes } from '@style'
+import styled, { layout, propTypes } from '@style'
 
 const Br = styled.br`
-  ${display}
+  ${layout}
 `
 
 Br.displayName = `Br`
