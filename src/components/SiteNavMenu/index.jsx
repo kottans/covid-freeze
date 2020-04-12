@@ -61,9 +61,11 @@ const MenuLink = styled(Link)`
   text-decoration: none;
   padding-top: 0.5ex;
   padding-bottom: 1ex;
+
   &:visited {
     color: #aaa;
   }
+
   &:hover {
     color: #fff;
   }

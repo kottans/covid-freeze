@@ -12,17 +12,17 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
-  
+
   a {
     color: #00e;
   }
-  
+
   a:visited {
     color: #00e;
   }
-  
+
   .button {
-    background-color: rgba(0,0,0,0%);
+    background-color: rgba(0, 0, 0, 0%);
     color: blue;
     border: 0.3ex solid blue;
     border-radius: 1ex;
@@ -34,16 +34,16 @@ const GlobalStyles = createGlobalStyle`
     text-align: center;
     cursor: pointer;
   }
-  
+
   .button:focus {
     outline: none;
   }
-  
+
   .active {
     background-color: blue;
-    color: yellow;  
+    color: yellow;
   }
-  
+
   .secondary {
     font-size: 80%;
   }
