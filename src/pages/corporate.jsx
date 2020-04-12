@@ -35,19 +35,8 @@ const embeddings = {
   },
 }
 
-const SearchTip = () => (
-  <Text>
-    Знайти компанію:
-    <Br />
-    Filter &gt;&gt; Add Filter &gt;&gt; Компанія contains [введіть частину
-    назви]
-  </Text>
-)
-
-const AttentionDot = () => <div>O</div>
-
-const Corporate = ({ location: { hash }}) => {
-  const subsection = Object.keys(embeddings).includes(hash) ? hash : undefined;
+const Corporate = ({ location: { hash } }) => {
+  const subsection = Object.keys(embeddings).includes(hash) ? hash : undefined
   const [embedding, setEmbedding] = useState(subsection || '#it')
   return (
     <Layout>

@@ -106,7 +106,11 @@ const SiteNavMenu = () => (
             </MenuLink>
             {entry.subItems &&
               entry.subItems.map((subEntry, subIdx) => (
-                <MenuSubLink from="navmenu" to={`${entry.link}${subEntry.link}`} key={`navmenuitem-${idx}-${subIdx}`}>
+                <MenuSubLink
+                  from="navmenu"
+                  to={`${entry.link}${subEntry.link}`}
+                  key={`navmenuitem-${idx}-${subIdx}`}
+                >
                   {subEntry.name}
                 </MenuSubLink>
               ))}

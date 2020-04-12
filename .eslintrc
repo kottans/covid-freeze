@@ -55,6 +55,7 @@
     "no-use-before-define": "warn",
     "react/no-danger": "warn",
     "react/display-name": "error",
+    "react/no-array-index-key": "warn",
     "react/destructuring-assignment": [
       "error",
       "always",

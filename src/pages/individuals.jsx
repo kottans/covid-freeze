@@ -34,7 +34,7 @@ const embeddings = {
 }
 
 const Individuals = ({ location: { hash } }) => {
-  const subsection = Object.keys(embeddings).includes(hash) ? hash : undefined;
+  const subsection = Object.keys(embeddings).includes(hash) ? hash : undefined
   const [embedding, setEmbedding] = useState(subsection || '#personal-stories')
   return (
     <Layout>
