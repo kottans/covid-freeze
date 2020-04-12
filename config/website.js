@@ -1,6 +1,6 @@
 module.exports = {
   pathPrefix: `/covid-freeze`,
-  url: `https://oleksiyrudenko.github.io/`,
+  url: `https://kottans.org/`,
   title: `COVID-19: як карантин впливає на бізнеси та людей в Україні`,
   titleTemplate: `%s — COVID-19 карантин`,
   description: `COVID-19: як карантин впливає на бізнеси та людей в Україні`,

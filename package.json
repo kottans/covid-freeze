@@ -1,20 +1,23 @@
 {
   "name": "covid-freeze",
   "private": true,
-  "description": "A website to monitor impact of COVID-19 on business and people in Ukraine",
+  "description": "Open data on impact of COVID-19 on business and people in Ukraine",
   "version": "0.1.0",
   "author": "Oleksiy Rudenko <oleksiy.rudenko@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oleksiyrudenko/covid-freeze"
+    "url": "https://github.com/kottans/covid-freeze"
   },
   "bugs": {
-    "url": "https://github.com/oleksiyrudenko/covid-freeze/issues"
+    "url": "https://github.com/kottans/covid-freeze/issues"
   },
   "keywords": [
     "covid",
-    "business"
+    "covid-19",
+    "covid-data",
+    "impact",
+    "ukarine"
   ],
   "scripts": {
     "telemetry-off": "gatsby telemetry --disable",
@@ -24,9 +27,9 @@
     "clean": "gatsby clean",
     "test": "jest",
     "test:watch": "jest --watch",
-    "format": "prettier --write \"src/**/*.{jsx,js}\"",
-    "lint:scripts": "eslint './src/**/*.{jsx,js}'",
-    "lint:styles": "stylelint './src/**/*.{jsx,js}'"
+    "format": "prettier --write \"./src/**/*.{jsx,js}\"",
+    "lint:scripts": "eslint ./src/**/*.{jsx,js}",
+    "lint:styles": "stylelint ./src/**/*.{jsx,js}"
   },
   "husky": {
     "hooks": {
