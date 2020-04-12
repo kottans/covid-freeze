@@ -1,26 +1,26 @@
 {
-  "name": "gatsby-starter-styled",
+  "name": "covid-freeze",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby and styled-system",
-  "version": "2.0.0",
-  "author": "Gregor Albrecht <hello@gregoralbrecht.com>",
+  "description": "A website to monitor impact of COVID-19 on business and people in Ukraine",
+  "version": "0.1.0",
+  "author": "Oleksiy Rudenko <oleksiy.rudenko@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gregoralbrecht/gatsby-starter-styled"
+    "url": "https://github.com/oleksiyrudenko/covid-freeze"
   },
   "bugs": {
-    "url": "https://github.com/gregoralbrecht/gatsby-starter-styled/issues"
+    "url": "https://github.com/oleksiyrudenko/covid-freeze/issues"
   },
   "keywords": [
-    "react",
-    "gatsby",
-    "styled-components",
-    "styled-system"
+    "covid",
+    "business"
   ],
   "scripts": {
+    "telemetry-off": "gatsby telemetry --disable",
     "start": "gatsby develop -o",
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
+    "gh-pages": "gatsby build --prefix-paths && push-dir --dir=public --branch=gh-pages",
     "clean": "gatsby clean",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -54,9 +54,11 @@
     "gatsby-transformer-sharp": "^2.3.17",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
+    "react-burger-menu": "^2.6.13",
     "react-dom": "16.12.0",
     "react-ga": "^2.7.0",
     "react-helmet": "^5.2.1",
+    "react-iframe": "^1.8.0",
     "react-typography": "^0.16.19",
     "styled-components": "^4.4.1",
     "styled-system": "^5.1.5",
@@ -87,6 +89,7 @@
     "jest-styled-components": "^6.3.4",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
+    "push-dir": "^0.4.1",
     "stylelint": "^13.2.1",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-standard": "^20.0.0",

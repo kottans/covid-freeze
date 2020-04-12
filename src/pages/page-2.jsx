@@ -3,7 +3,9 @@ import React from 'react'
 import { Link } from '@components/Link'
 import { Layout } from '@components/Layout'
 import { SEO } from '@components/SEO'
-import { Box } from '@components/Grid'
+import Image from '@components/Image'
+import { Text } from '@components/Text'
+import { Br, Box } from '@components/Grid'
 
 const SecondPage = () => (
   <Layout>
@@ -17,6 +19,13 @@ const SecondPage = () => (
     <Box mb={3}>
       <Link to="/">Go back to the homepage</Link>
     </Box>
+    <Text as="h2" mb={3}>
+      Hi people
+    </Text>
+    <Text mb={4}>
+      Welcome to your new Gatsby site. <Br />
+      Now go build something great.
+    </Text>
     <h1>High-level explanation of core Typography.js concepts</h1>
     <p>
       The goal of Typography.js is to provide a high-level elegant API for
@@ -84,6 +93,10 @@ const SecondPage = () => (
       design will remain consistent and harmonous through all design tweaks and
       changes.
     </p>
+    <Box maxWidth="300px" mb={4}>
+      <Image />
+    </Box>
+    <Link to="/page-2/">Go to page 2</Link>
   </Layout>
 )
 

@@ -7,7 +7,7 @@ import { Text } from '@components/Text'
 
 const Header = ({ siteTitle }) => (
   <Box as="header" bg="primary.800" px={3} py={3} mb={4}>
-    <Box maxWidth="700px" m="0 auto">
+    <Box maxWidth="1000px" m="0 auto">
       <Link to="/" css={{ textDecoration: 'none' }}>
         <Text as="h1" color="white">
           {siteTitle}

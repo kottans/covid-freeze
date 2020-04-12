@@ -2,7 +2,7 @@ import Typography from 'typography'
 
 const typography = new Typography({
   title: 'Default',
-  baseFontSize: '18px',
+  baseFontSize: '24px',
   baseLineHeight: 1.45,
   headerFontFamily: [
     '-apple-system',

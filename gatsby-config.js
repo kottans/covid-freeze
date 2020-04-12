@@ -15,6 +15,7 @@ module.exports = {
     headline: website.headline,
     author: website.author,
     twitter: website.twitter,
+    navMenuLinks: website.navMenuLinks,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
