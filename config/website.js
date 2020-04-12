@@ -51,7 +51,7 @@ module.exports = {
 
   // Web App Manifest
   favicon: `src/images/favicon.png`, // Used for manifest favicon generation
-  shortName: `Starter Styled`, // shortname for manifest. *Must* be shorter than 12 characters
+  shortName: `COVID freeze`, // shortname for manifest. *Must* be shorter than 12 characters
   themeColor: `#253688`,
   backgroundColor: `#253688`,
 
