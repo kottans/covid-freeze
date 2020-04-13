@@ -35,8 +35,8 @@ const IndexPage = () => (
     </Text>
     <Text mb={4}>Інформацію про ефекти карантину поділено на три групи:</Text>
     <ul>
-      <li>стан хайрингу в компаніях</li>
-      <li>зміни у малому бізнесі</li>
+      <li>стан найму в компаніях</li>
+      <li>зміни у локальному бізнесі та у фрілансерів</li>
       <li>як ми виживаємо</li>
     </ul>
     <Box mb={4}>
@@ -46,7 +46,7 @@ const IndexPage = () => (
         <Link to="/corporate/" from="index" className="button">
           <strong>Компанії</strong>
           <Br />
-          стан хайрингу
+          стан найму
         </Link>
         <Link to="/local-business/" from="index" className="button">
           <strong>Локальний бізнес і фріланс</strong>
