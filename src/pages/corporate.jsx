@@ -102,7 +102,9 @@ const Corporate = ({ location: { hash } }) => {
         </Flex>
       </Box>
       <Text mb={4} style={{ textAlign: 'center' }}>
-        <Link to="/corporate/#more-data">Ще більше відкритих даних</Link>
+        <Link to="/corporate/#more-data" title="Більше даних">
+          Ще більше відкритих даних
+        </Link>
       </Text>
       <Box mb={4}>
         <Iframe
@@ -165,6 +167,7 @@ const Corporate = ({ location: { hash } }) => {
           className="button secondary"
           from="corporate"
           to="/corporate/#main-data"
+          title="Наверх"
         >
           Наверх
         </Link>

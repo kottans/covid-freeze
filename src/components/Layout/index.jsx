@@ -9,6 +9,11 @@ import GlobalStyles from '@style/GlobalStyles'
 import { ThemeProvider, theme } from '@style'
 import SiteNavMenu from '@components/SiteNavMenu'
 
+if (typeof window !== 'undefined') {
+  // eslint-disable-next-line global-require
+  require('smooth-scroll')('a[href*="#"]')
+}
+
 const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <>

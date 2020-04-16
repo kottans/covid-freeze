@@ -91,7 +91,9 @@ const Individuals = ({ location: { hash } }) => {
         </Flex>
       </Box>
       <Text mb={4} style={{ textAlign: 'center' }}>
-        <Link to="/individuals/#more-data">Ще більше відкритих даних</Link>
+        <Link to="/individuals/#more-data" title="Більше даних">
+          Ще більше відкритих даних
+        </Link>
       </Text>
       <Box mb={4}>
         <Iframe
@@ -153,6 +155,7 @@ const Individuals = ({ location: { hash } }) => {
           className="button secondary"
           from="individuals"
           to="/individuals/#main-data"
+          title="Наверх"
         >
           Наверх
         </Link>

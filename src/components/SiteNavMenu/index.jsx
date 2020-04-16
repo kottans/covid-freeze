@@ -1,7 +1,7 @@
 import React from 'react'
 import { slide as Menu } from 'react-burger-menu'
 import styled from '@style'
-import { StaticQuery, graphql } from 'gatsby'
+import { navigate, StaticQuery, graphql } from 'gatsby'
 import { Link } from '@components/Link'
 
 const styles = {

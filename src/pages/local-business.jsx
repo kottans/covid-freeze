@@ -68,6 +68,7 @@ const LocalBusiness = () => (
         className="button secondary"
         from="local-business"
         to="/local-business/#main-data"
+        title="Наверх"
       >
         Наверх
       </Link>
