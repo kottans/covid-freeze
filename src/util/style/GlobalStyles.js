@@ -47,6 +47,10 @@ const GlobalStyles = createGlobalStyle`
   .secondary {
     font-size: 80%;
   }
+
+  a.active:visited {
+    color: yellow;
+  }
 `
 
 export default GlobalStyles

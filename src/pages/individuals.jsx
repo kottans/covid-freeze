@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Iframe from 'react-iframe'
+import { navigate } from 'gatsby'
 import PropTypes from 'prop-types'
 
-import { Link } from '@components/Link'
+import { Link, SubcomponentLink } from '@components/Link'
 import { Layout } from '@components/Layout'
 import { SEO } from '@components/SEO'
 import { Text } from '@components/Text'
@@ -71,23 +72,31 @@ const Individuals = ({ location: { hash } }) => {
       <Box mb={2} id="main-data">
         <Flex>
           <button
+            id="personal-stories"
             type="button"
             className={`button ${
               embedding === '#personal-stories' ? 'active' : ''
             }`}
-            onClick={() => setEmbedding('#personal-stories')}
+            to="/individuals#personal-stories"
+            onClick={event => {
+              event.preventDefault()
+              console.log('indiv#stories')
+              navigate('/individuals#personal-stories')
+              setEmbedding('#personal-stories')
+            }}
           >
             Особисті історії
           </button>
-          <button
-            type="button"
+          <SubcomponentLink
             className={`button ${
               embedding === '#vacancy-sources-and-career-advice' ? 'active' : ''
             }`}
-            onClick={() => setEmbedding('#vacancy-sources-and-career-advice')}
+            to="/individuals"
+            anchor="vacancy-sources-and-career-advice"
+            stateUpdater={setEmbedding}
           >
-            Джерела вакансій та кар&nbsp;єрні поради
-          </button>
+            Джерела вакансій та кар&apos;єрні поради
+          </SubcomponentLink>
         </Flex>
       </Box>
       <Text mb={4} style={{ textAlign: 'center' }}>
