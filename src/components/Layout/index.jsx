@@ -39,6 +39,15 @@ const Layout = ({ children }) => (
             </p>
             <p>
               <OutboundLink
+                to="https://github.com/kottans/covid-freeze"
+                from="footer"
+                target="_blank"
+              >
+                Source code
+              </OutboundLink>
+            </p>
+            <p>
+              <OutboundLink
                 to="https://t.me/kottans"
                 from="footer"
                 target="_blank"
