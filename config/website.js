@@ -27,6 +27,10 @@ module.exports = {
           name: 'Управління ризиками',
           link: '#survival',
         },
+        {
+          name: 'Огляди та великі найми',
+          link: '#overview',
+        },
       ],
     },
     {

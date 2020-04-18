@@ -1,5 +1,5 @@
 import Link from './Link'
 import OutboundLink from './OutboundLink'
-import SubcomponentLink from './SubcomponentLink'
+import IntraPageLink from './IntraPageLink'
 
-export { Link, OutboundLink, SubcomponentLink }
+export { Link, OutboundLink, IntraPageLink }

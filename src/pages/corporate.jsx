@@ -1,43 +1,216 @@
-import React, { useState } from 'react'
-import Iframe from 'react-iframe'
+import React, { useState, useEffect } from 'react'
+import Iframe from '@components/Iframe'
+import PropTypes from 'prop-types'
 
-import { Link, OutboundLink } from '@components/Link'
+import { Link, OutboundLink, IntraPageLink } from '@components/Link'
 import { Layout } from '@components/Layout'
 import { SEO } from '@components/SEO'
 import { Text } from '@components/Text'
 import { Box, Br, Flex } from '@components/Grid'
 import { LiveData, DataSubmissionAnonymityWarning } from '@components/Content'
-import PropTypes from 'prop-types'
+import TabSet from '@components/TabSet'
 
-const embeddings = {
-  '#it': {
-    tableUrl:
-      'https://airtable.com/embed/shrOnixvEeyehP4fc?backgroundColor=cyan&viewControls=on',
-    form: {
-      url: 'https://airtable.com/embed/shrtkZHzVtYeA04om?backgroundColor=cyan',
-      height: '1200px',
-    },
+const tabs = [
+  {
+    name: 'it',
+    title: 'ІТ компанії',
+    content: (
+      <>
+        <Box mb={4}>
+          <Iframe
+            url="https://airtable.com/embed/shrOnixvEeyehP4fc?backgroundColor=cyan&viewControls=on"
+            className="airtable-embed"
+            height="533px"
+          />
+        </Box>
+        <Box mb={4} style={{ textAlign: 'center' }}>
+          <Text as="h3" mb={4}>
+            Розкажіть нам і співшукачам про компанію
+          </Text>
+          <Text mb={4} style={{ fontSize: '80%' }}>
+            Будь ласка перевірте, чи немає вже інформації про вашу компанію у
+            списку вище.
+            <Br />
+            Дякуємо, що підтримуєте відкриті дані чистими.
+          </Text>
+          <Iframe
+            url="https://airtable.com/embed/shrtkZHzVtYeA04om?backgroundColor=cyan"
+            className="airtable-embed"
+            height="1200px"
+          />
+        </Box>
+        <Flex mb={6}>
+          <IntraPageLink
+            basepath="/corporate"
+            name="main-data"
+            className="button secondary"
+          >
+            Наверх
+          </IntraPageLink>
+        </Flex>
+      </>
+    ),
   },
-  '#general': {
-    tableUrl:
-      'https://airtable.com/embed/shryqDMQ4UmjFlQef?backgroundColor=cyan&viewControls=on',
-    form: {
-      url: 'https://airtable.com/embed/shra5VdhFVKNEKN37?backgroundColor=cyan',
-    },
+  {
+    name: 'general',
+    title: 'Всі індустрії',
+    content: (
+      <>
+        <Box mb={4}>
+          <Iframe
+            url="https://airtable.com/embed/shryqDMQ4UmjFlQef?backgroundColor=cyan&viewControls=on"
+            className="airtable-embed"
+            height="533px"
+          />
+        </Box>
+        <Box mb={4} style={{ textAlign: 'center' }}>
+          <Text as="h3" mb={4}>
+            Розкажіть нам і співшукачам про заходи, до яких вдається ваша
+            компанія
+          </Text>
+          <Text mb={4} style={{ fontSize: '80%' }}>
+            Ви можете додати інформацію про зміни у вашій компанії пізніше.
+            <Br />
+            Дякуємо, що підтримуєте відкриті дані чистими.
+          </Text>
+          <Iframe
+            url="https://airtable.com/embed/shra5VdhFVKNEKN37?backgroundColor=cyan"
+            className="airtable-embed"
+            height="1120px"
+          />
+        </Box>
+        <Flex mb={7}>
+          <IntraPageLink
+            basepath="/corporate"
+            name="main-data"
+            className="button secondary"
+          >
+            Наверх
+          </IntraPageLink>
+        </Flex>
+      </>
+    ),
   },
-  '#survival': {
-    tableUrl:
-      'https://airtable.com/embed/shri5QNsNFHXZ6dRO?backgroundColor=cyan&viewControls=on',
-    form: {
-      url: 'https://airtable.com/embed/shr7pczRDtpRzTG7x?backgroundColor=cyan',
-      height: '1280px',
-    },
+  {
+    name: 'survival',
+    title: 'Управління ризиками',
+    content: (
+      <>
+        <Box mb={4}>
+          <Iframe
+            url="https://airtable.com/embed/shri5QNsNFHXZ6dRO?backgroundColor=cyan&viewControls=on"
+            className="airtable-embed"
+            height="533px"
+          />
+        </Box>
+        <Box mb={4} style={{ textAlign: 'center' }}>
+          <Text as="h3" mb={4}>
+            Розкажіть нам і співшукачам про компанію
+          </Text>
+          <Text mb={4} style={{ fontSize: '80%' }}>
+            Будь ласка перевірте, чи не має вже інформації про вашу компанію у
+            списку вище.
+            <Br />
+            Дякуємо, що підтримуєте відкриті дані чистими.
+          </Text>
+          <Iframe
+            url="https://airtable.com/embed/shr7pczRDtpRzTG7x?backgroundColor=cyan"
+            className="airtable-embed"
+            height="1280px"
+          />
+        </Box>
+        <Flex mb={6}>
+          <IntraPageLink
+            basepath="/corporate"
+            name="main-data"
+            className="button secondary"
+          >
+            Наверх
+          </IntraPageLink>
+        </Flex>
+      </>
+    ),
   },
-}
+  {
+    name: 'overview',
+    title: 'Огляди індустрії та великі найми',
+    content: (
+      <>
+        <Box mb={4}>
+          <Iframe
+            url="https://airtable.com/embed/shrt6QJIluRV4Pn07?backgroundColor=cyan&viewControls=on"
+            className="airtable-embed"
+            height="533px"
+          />
+        </Box>
+        <Box mb={4} style={{ textAlign: 'center' }}>
+          <Text as="h3" mb={4}>
+            Що відбувається на ринках України і світу
+          </Text>
+          <Text mb={4} style={{ fontSize: '80%' }}>
+            Ви можете додати лінки на огляди та великі найми в Україні.
+            <Br />
+            Інформація в цьому розділі підлягає модерації для уникнення спаму.
+            <Br />
+            Дякуємо, що підтримуєте відкриті дані чистими.
+          </Text>
+          <Iframe
+            url="https://airtable.com/embed/shr6HPb24ySjV57qw?backgroundColor=cyan"
+            className="airtable-embed"
+            height="1120px"
+          />
+        </Box>
+        <Flex mb={7}>
+          <IntraPageLink
+            basepath="/corporate"
+            name="main-data"
+            className="button secondary"
+          >
+            Наверх
+          </IntraPageLink>
+        </Flex>
+      </>
+    ),
+  },
+  {
+    name: 'more-data',
+    title: 'Ще більше відкритих даних...',
+    content: (
+      <>
+        <Flex mb={2}>
+          <Link
+            className="button secondary"
+            from="corporate"
+            to="/local-business"
+          >
+            Локальний бізнес і фріланс
+          </Link>
+          <Link className="button secondary" from="corporate" to="/individuals">
+            Люди
+          </Link>
+        </Flex>
+        <Flex mb={6}>
+          <Link className="button secondary" from="corporate" to="/">
+            На головну
+          </Link>
+        </Flex>
+      </>
+    ),
+  },
+]
 
-const Corporate = ({ location: { hash } }) => {
-  const subsection = Object.keys(embeddings).includes(hash) ? hash : undefined
-  const [embedding, setEmbedding] = useState(subsection || '#it')
+const Corporate = ({ location }) => {
+  const tabNames = tabs.map(tab => `#${tab.name}`)
+  const subsection = tabNames.includes(location.hash)
+    ? location.hash
+    : undefined
+  const [embedding, setEmbedding] = useState(subsection || tabNames[0])
+  useEffect(() => {
+    if (location.hash && tabNames.includes(location.hash)) {
+      setEmbedding(location.hash)
+    }
+  }, [location])
+  console.log('Corporate:location', location)
   return (
     <Layout>
       <SEO
@@ -76,107 +249,14 @@ const Corporate = ({ location: { hash } }) => {
         це ви і для вас!
       </Text>
       <DataSubmissionAnonymityWarning from="corporate" />
-      <Box mb={2} id="main-data">
-        <Flex>
-          <button
-            type="button"
-            className={`button ${embedding === '#it' ? 'active' : ''}`}
-            onClick={() => setEmbedding('#it')}
-          >
-            ІТ компанії
-          </button>
-          <button
-            type="button"
-            className={`button ${embedding === '#general' ? 'active' : ''}`}
-            onClick={() => setEmbedding('#general')}
-          >
-            Всі індустрії
-          </button>
-          <button
-            type="button"
-            className={`button ${embedding === '#survival' ? 'active' : ''}`}
-            onClick={() => setEmbedding('#survival')}
-          >
-            Управління ризиками
-          </button>
-        </Flex>
-      </Box>
-      <Text mb={4} style={{ textAlign: 'center' }}>
-        <Link to="/corporate/#more-data" title="Більше даних">
-          Ще більше відкритих даних
-        </Link>
-      </Text>
-      <Box mb={4}>
-        <Iframe
-          url={embeddings[embedding].tableUrl}
-          className="airtable-embed"
-          width="100%"
-          height="533px"
-          styles={{
-            background: 'transparent',
-            border: '0px none #ccc',
-          }}
-          frameborder="0"
-          display="initial"
-          onMouseWheel=""
-          position="relative"
-        />
-      </Box>
-      <Box mb={4} style={{ textAlign: 'center' }}>
-        <Text as="h3" mb={4}>
-          Розкажіть нам і співшукачам про компанію
-        </Text>
-        <Text mb={4} style={{ fontSize: '80%' }}>
-          Будь ласка перевірте, чи не має вже інформації про вашу компанію у
-          списку вище.
-          <Br />
-          Дякуємо, що підтримуєте відкриті дані чистими.
-        </Text>
-        <Iframe
-          url={embeddings[embedding].form.url}
-          className="airtable-embed"
-          width="100%"
-          height={embeddings[embedding].form.height || '1120px'}
-          styles={{
-            background: 'transparent',
-            border: '0px none #ccc',
-          }}
-          frameborder="0"
-          display="initial"
-          onMouseWheel=""
-          position="relative"
-        />
-      </Box>
-      <Text mb={2} style={{ textAlign: 'center' }} id="more-data">
-        Ще більше відкритих даних
-      </Text>
-      <Flex mb={2}>
-        <Link
-          className="button secondary"
-          from="corporate"
-          to="/local-business/"
-        >
-          Локальний бізнес і фріланс
-        </Link>
-        <Link className="button secondary" from="corporate" to="/individuals/">
-          Люди
-        </Link>
-      </Flex>
-      <Flex mb={6}>
-        <Link
-          className="button secondary"
-          from="corporate"
-          to="/corporate/#main-data"
-          title="Наверх"
-        >
-          Наверх
-        </Link>
-        <Link className="button secondary" from="corporate" to="/">
-          На головну
-        </Link>
-      </Flex>
+      <TabSet
+        id="main-data"
+        tabs={tabs}
+        basePath={location.pathname}
+        activeTabName={embedding.slice(1)}
+      />
       <Text mb={6} style={{ textAlign: 'center' }}>
-        Ідея проекту:{' '}
+        Ідея цієї сторінки:{' '}
         <OutboundLink
           from="corporate"
           to="https://candor.co/hiring-freezes/"
@@ -200,6 +280,7 @@ const Corporate = ({ location: { hash } }) => {
 Corporate.propTypes = {
   location: PropTypes.shape({
     hash: PropTypes.string.isRequired,
+    pathname: PropTypes.string.isRequired,
   }).isRequired,
 }
 

@@ -1,42 +1,136 @@
-import React, { useState } from 'react'
-import Iframe from 'react-iframe'
-import { navigate } from 'gatsby'
+import React, { useEffect, useState } from 'react'
+import Iframe from '@components/Iframe'
 import PropTypes from 'prop-types'
 
-import { Link, SubcomponentLink } from '@components/Link'
+import { Link, IntraPageLink } from '@components/Link'
 import { Layout } from '@components/Layout'
 import { SEO } from '@components/SEO'
 import { Text } from '@components/Text'
 import { Box, Br, Flex } from '@components/Grid'
 import { LiveData, DataSubmissionAnonymityWarning } from '@components/Content'
+import TabSet from '@components/TabSet'
 
-const embeddings = {
-  '#personal-stories': {
-    tableUrl:
-      'https://airtable.com/embed/shrZPaMPSGvTftBnt?backgroundColor=cyan&viewControls=on',
-    form: {
-      header: 'Розкажіть свою історію',
-      intro: 'Що з вами сталось і як ви реагуєте на виклики?',
-      url: 'https://airtable.com/embed/shrWMin8tyw50itPo?backgroundColor=cyan',
-      height: '1090px',
-    },
+const tabs = [
+  {
+    name: 'personal-stories',
+    title: 'Особисті історії',
+    content: (
+      <>
+        <Box mb={4}>
+          <Iframe
+            url="https://airtable.com/embed/shrZPaMPSGvTftBnt?backgroundColor=cyan&viewControls=on"
+            className="airtable-embed"
+            height="533px"
+          />
+        </Box>
+        <Box mb={4} style={{ textAlign: 'center' }}>
+          <Text as="h3" mb={4}>
+            Розкажіть свою історію
+          </Text>
+          <Text mb={4} style={{ fontSize: '80%' }}>
+            Що з вами сталось і як ви реагуєте на виклики?
+            <Br />
+            Дякуємо, що підтримуєте відкриті дані чистими.
+          </Text>
+          <Iframe
+            url="https://airtable.com/embed/shrWMin8tyw50itPo?backgroundColor=cyan"
+            className="airtable-embed"
+            height="1090px"
+          />
+        </Box>
+        <Flex mb={6}>
+          <IntraPageLink
+            basepath="/individuals"
+            name="main-data"
+            className="button secondary"
+          >
+            Наверх
+          </IntraPageLink>
+        </Flex>
+      </>
+    ),
   },
-  '#vacancy-sources-and-career-advice': {
-    tableUrl:
-      'https://airtable.com/embed/shrDhcjrQNJWEzjdr?backgroundColor=cyan&viewControls=on',
-    form: {
-      header: 'Додайте корисний ресурс',
-      intro:
-        "Кар'єрні поради або канали чи групи, де не проходить і дня без публікації вакансії",
-      url: 'https://airtable.com/embed/shrvWPpqJsc57Rukx?backgroundColor=cyan',
-      height: '1330px',
-    },
+  {
+    name: 'vacancy-sources-and-career-advice',
+    title: "Джерела вакансій та кар'єрні поради",
+    content: (
+      <>
+        <Box mb={4}>
+          <Iframe
+            url="https://airtable.com/embed/shrDhcjrQNJWEzjdr?backgroundColor=cyan&viewControls=on"
+            className="airtable-embed"
+            height="533px"
+          />
+        </Box>
+        <Box mb={4} style={{ textAlign: 'center' }}>
+          <Text as="h3" mb={4}>
+            Додайте корисний ресурс
+          </Text>
+          <Text mb={4} style={{ fontSize: '80%' }}>
+            Кар&apos;єрні поради або канали чи групи, де не проходить і дня без
+            публікації вакансії
+            <Br />
+            Інформація в цьому розділі підлягає модерації для уникнення спаму.
+            <Br />
+            Дякуємо, що підтримуєте відкриті дані чистими.
+          </Text>
+          <Iframe
+            url="https://airtable.com/embed/shrvWPpqJsc57Rukx?backgroundColor=cyan"
+            className="airtable-embed"
+            height="1330px"
+          />
+        </Box>
+        <Flex mb={6}>
+          <IntraPageLink
+            basepath="/individuals"
+            name="main-data"
+            className="button secondary"
+          >
+            Наверх
+          </IntraPageLink>
+        </Flex>
+      </>
+    ),
   },
-}
+  {
+    name: 'more-data',
+    title: 'Ще більше відкритих даних...',
+    content: (
+      <>
+        <Flex mb={2}>
+          <Link className="button secondary" from="individuals" to="/corporate">
+            Компанії
+          </Link>
+          <Link
+            className="button secondary"
+            from="individuals"
+            to="/local-business"
+          >
+            Локальний бізнес і фріланс
+          </Link>
+        </Flex>
+        <Flex mb={7}>
+          <Link className="button secondary" from="individuals" to="/">
+            На головну
+          </Link>
+        </Flex>
+      </>
+    ),
+  },
+]
 
-const Individuals = ({ location: { hash } }) => {
-  const subsection = Object.keys(embeddings).includes(hash) ? hash : undefined
-  const [embedding, setEmbedding] = useState(subsection || '#personal-stories')
+const Individuals = ({ location }) => {
+  const tabNames = tabs.map(tab => `#${tab.name}`)
+  const subsection = tabNames.includes(location.hash)
+    ? location.hash
+    : undefined
+  const [embedding, setEmbedding] = useState(subsection || tabNames[0])
+  useEffect(() => {
+    if (location.hash && tabNames.includes(location.hash)) {
+      setEmbedding(location.hash)
+    }
+  }, [location])
+  console.log('Individual:location', location)
   return (
     <Layout>
       <SEO
@@ -69,109 +163,12 @@ const Individuals = ({ location: { hash } }) => {
         це ви!
       </Text>
       <DataSubmissionAnonymityWarning from="individuals" />
-      <Box mb={2} id="main-data">
-        <Flex>
-          <button
-            id="personal-stories"
-            type="button"
-            className={`button ${
-              embedding === '#personal-stories' ? 'active' : ''
-            }`}
-            to="/individuals#personal-stories"
-            onClick={event => {
-              event.preventDefault()
-              console.log('indiv#stories')
-              navigate('/individuals#personal-stories')
-              setEmbedding('#personal-stories')
-            }}
-          >
-            Особисті історії
-          </button>
-          <SubcomponentLink
-            className={`button ${
-              embedding === '#vacancy-sources-and-career-advice' ? 'active' : ''
-            }`}
-            to="/individuals"
-            anchor="vacancy-sources-and-career-advice"
-            stateUpdater={setEmbedding}
-          >
-            Джерела вакансій та кар&apos;єрні поради
-          </SubcomponentLink>
-        </Flex>
-      </Box>
-      <Text mb={4} style={{ textAlign: 'center' }}>
-        <Link to="/individuals/#more-data" title="Більше даних">
-          Ще більше відкритих даних
-        </Link>
-      </Text>
-      <Box mb={4}>
-        <Iframe
-          url={embeddings[embedding].tableUrl}
-          className="airtable-embed"
-          width="100%"
-          height="533px"
-          styles={{
-            background: 'transparent',
-            border: '0px none #ccc',
-          }}
-          frameborder="0"
-          display="initial"
-          onMouseWheel=""
-          position="relative"
-        />
-      </Box>
-      <Box mb={4} style={{ textAlign: 'center' }}>
-        <Text as="h3" mb={4}>
-          {embeddings[embedding].form.header}
-        </Text>
-        <Text mb={4} style={{ fontSize: '80%' }}>
-          {embeddings[embedding].form.intro}
-          <Br />
-          Дякуємо, що підтримуєте відкриті дані.
-        </Text>
-        <Iframe
-          url={embeddings[embedding].form.url}
-          className="airtable-embed"
-          width="100%"
-          height={embeddings[embedding].form.height || '1120px'}
-          styles={{
-            background: 'transparent',
-            border: '0px none #ccc',
-          }}
-          frameborder="0"
-          display="initial"
-          onMouseWheel=""
-          position="relative"
-        />
-      </Box>
-      <Text mb={2} style={{ textAlign: 'center' }} id="more-data">
-        Ще більше відкритих даних
-      </Text>
-      <Flex mb={2}>
-        <Link className="button secondary" from="individuals" to="/corporate/">
-          Компанії
-        </Link>
-        <Link
-          className="button secondary"
-          from="individuals"
-          to="/local-business/"
-        >
-          Локальний бізнес і фріланс
-        </Link>
-      </Flex>
-      <Flex mb={6}>
-        <Link
-          className="button secondary"
-          from="individuals"
-          to="/individuals/#main-data"
-          title="Наверх"
-        >
-          Наверх
-        </Link>
-        <Link className="button secondary" from="individuals" to="/">
-          На головну
-        </Link>
-      </Flex>
+      <TabSet
+        id="main-data"
+        tabs={tabs}
+        basePath={location.pathname}
+        activeTabName={embedding.slice(1)}
+      />
     </Layout>
   )
 }
@@ -179,6 +176,7 @@ const Individuals = ({ location: { hash } }) => {
 Individuals.propTypes = {
   location: PropTypes.shape({
     hash: PropTypes.string.isRequired,
+    pathname: PropTypes.string.isRequired,
   }).isRequired,
 }
 
