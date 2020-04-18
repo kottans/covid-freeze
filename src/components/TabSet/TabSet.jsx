@@ -1,21 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { useUIDSeed } from 'react-uid'
 import TabTags from './TabTags'
 
-const TabSet = ({ id, tabs, basePath, activeTabName, children }) => (
-  <div id={id}>
-    <TabTags
-      tags={tabs.map(({ name, title }) => ({
-        name,
-        title,
-      }))}
-      basePath={basePath}
-      activeTabName={activeTabName}
-    />
-    {children}
-    {tabs.filter(tab => tab.name === activeTabName).map(tab => tab.content)}
-  </div>
-)
+const TabSet = ({ id, tabs, basePath, activeTabName, children }) => {
+  const seed = useUIDSeed()
+  return (
+    <div id={id}>
+      <TabTags
+        tags={tabs.map(({ name, title }) => ({
+          name,
+          title,
+        }))}
+        basePath={basePath}
+        activeTabName={activeTabName}
+      />
+      {children}
+      {tabs
+        .filter(tab => tab.name === activeTabName)
+        .map((tab, idx) => (
+          <div key={seed(`tabset-content-${idx})`)}>{tab.content}</div>
+        ))}
+    </div>
+  )
+}
 
 TabSet.propTypes = {
   id: PropTypes.string,

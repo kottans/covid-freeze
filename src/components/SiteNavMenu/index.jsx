@@ -2,6 +2,7 @@ import React from 'react'
 import { slide as Menu } from 'react-burger-menu'
 import styled from '@style'
 import { StaticQuery, graphql } from 'gatsby'
+import { useUIDSeed } from 'react-uid'
 import { Link } from '@components/Link'
 
 const styles = {
@@ -77,50 +78,57 @@ const MenuSubLink = styled(MenuLink)`
   padding-top: 0;
 `
 
-const SiteNavMenu = () => (
-  <StaticQuery
-    query={graphql`
-      query {
-        site {
-          siteMetadata {
-            navMenuLinks {
-              name
-              link
-              subItems {
+const SiteNavMenu = () => {
+  const seed = useUIDSeed()
+  return (
+    <StaticQuery
+      query={graphql`
+        query {
+          site {
+            siteMetadata {
+              navMenuLinks {
                 name
                 link
+                subItems {
+                  name
+                  link
+                }
               }
             }
           }
         }
-      }
-    `}
-    render={({
-      site: {
-        siteMetadata: { navMenuLinks },
-      },
-    }) => (
-      <Menu width="400px" styles={styles}>
-        {navMenuLinks.map((entry, idx) => (
-          <React.Fragment key={`navmenuitem-container-${idx}`}>
-            <MenuLink from="navmenu" to={entry.link} key={`navmenuitem-${idx}`}>
-              {entry.name}
-            </MenuLink>
-            {entry.subItems &&
-              entry.subItems.map((subEntry, subIdx) => (
-                <MenuSubLink
-                  from="navmenu"
-                  to={`${entry.link}${subEntry.link}`}
-                  key={`navmenuitem-${idx}-${subIdx}`}
-                >
-                  {subEntry.name}
-                </MenuSubLink>
-              ))}
-          </React.Fragment>
-        ))}
-      </Menu>
-    )}
-  />
-)
+      `}
+      render={({
+        site: {
+          siteMetadata: { navMenuLinks },
+        },
+      }) => (
+        <Menu width="400px" styles={styles}>
+          {navMenuLinks.map((entry, idx) => (
+            <React.Fragment key={seed('sitenavmenu-navmenuitem-container')}>
+              <MenuLink
+                from="navmenu"
+                to={entry.link}
+                key={seed(`sitenavmenu-navmenuitem${idx}`)}
+              >
+                {entry.name}
+              </MenuLink>
+              {entry.subItems &&
+                entry.subItems.map((subEntry, subIdx) => (
+                  <MenuSubLink
+                    from="navmenu"
+                    to={`${entry.link}${subEntry.link}`}
+                    key={seed(`sitenavmenu-navmenuitem${idx}-subitem${subIdx}`)}
+                  >
+                    {subEntry.name}
+                  </MenuSubLink>
+                ))}
+            </React.Fragment>
+          ))}
+        </Menu>
+      )}
+    />
+  )
+}
 
 export default SiteNavMenu
