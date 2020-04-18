@@ -157,7 +157,7 @@ const tabs = [
           <Iframe
             url="https://airtable.com/embed/shr6HPb24ySjV57qw?backgroundColor=cyan"
             className="airtable-embed"
-            height="1120px"
+            height="1300px"
           />
         </Box>
         <Flex mb={7}>
