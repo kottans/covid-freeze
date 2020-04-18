@@ -129,8 +129,8 @@ const Individuals = ({ location }) => {
     if (location.hash && tabNames.includes(location.hash)) {
       setEmbedding(location.hash)
     }
-  }, [location])
-  console.log('Individual:location', location)
+  }, [location, tabNames]) // TODO: Fix extra render cycle on extra dependency addition
+  console.log('Individual:location', location) // TODO: Note number of renders
   return (
     <Layout>
       <SEO

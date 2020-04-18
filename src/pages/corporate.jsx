@@ -209,8 +209,8 @@ const Corporate = ({ location }) => {
     if (location.hash && tabNames.includes(location.hash)) {
       setEmbedding(location.hash)
     }
-  }, [location])
-  console.log('Corporate:location', location)
+  }, [location, tabNames]) // TODO: Fix extra render cycle on extra dependency addition
+  console.log('Corporate:location', location) // TODO: Note number of renders
   return (
     <Layout>
       <SEO
