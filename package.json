@@ -23,7 +23,7 @@
     "telemetry-off": "gatsby telemetry --disable",
     "start": "gatsby develop -o",
     "build": "gatsby build --prefix-paths",
-    "gh-pages": "gatsby build --prefix-paths && push-dir --dir=public --branch=gh-pages",
+    "gh-pages": "gatsby build --prefix-paths && push-dir --dir=public --branch=gh-pages --cleanup",
     "clean": "gatsby clean",
     "test": "jest",
     "test:watch": "jest --watch",
