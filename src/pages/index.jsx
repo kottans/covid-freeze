@@ -7,11 +7,13 @@ import { Text } from '@components/Text'
 import { Box, Br, Flex } from '@components/Grid'
 import { LiveData, DataSubmissionAnonymityWarning } from '@components/Content'
 
+const basePath = '/'
+
 const IndexPage = () => (
   <Layout>
     <SEO
       title="Інтро"
-      pathname="/"
+      pathname={basePath}
       description="COVID-19: як карантин впливає на бізнеси та людей в Україні"
       isArticle
       articleMeta={{ datePublished: '2020-04-05', dateModified: '2020-04-05' }}
@@ -43,15 +45,15 @@ const IndexPage = () => (
       Ознайомтесь із зібраною інформацією та додайте від себе - відкриті дані це
       ви і для вас!
       <Flex>
-        <Link to="/corporate/" from="index" className="button">
+        <Link to="/corporate" from="index" className="button">
           <strong>Компанії</strong>
           <Br />
           стан найму
         </Link>
-        <Link to="/local-business/" from="index" className="button">
+        <Link to="/local-business" from="index" className="button">
           <strong>Локальний бізнес і фріланс</strong>
         </Link>
-        <Link to="/individuals/" from="index" className="button">
+        <Link to="/individuals" from="index" className="button">
           <strong>Люди</strong>
           <Br />
           виживання

@@ -10,6 +10,8 @@ import { LiveData } from '@components/Content'
 import PropTypes from 'prop-types'
 import TabSet from '@components/TabSet'
 
+const basePath = '/local-business'
+
 const tabs = [
   {
     name: 'local-business-questionnaire',
@@ -24,7 +26,7 @@ const tabs = [
         </Box>
         <Flex mb={6}>
           <IntraPageLink
-            basepath="/local-business"
+            basepath={basePath}
             name="main-data"
             className="button secondary"
           >
@@ -40,23 +42,15 @@ const tabs = [
     content: (
       <>
         <Flex mb={2}>
-          <Link
-            className="button secondary"
-            from="local-business"
-            to="/corporate"
-          >
+          <Link className="button secondary" from={basePath} to="/corporate">
             Компанії
           </Link>
-          <Link
-            className="button secondary"
-            from="local-business"
-            to="/individuals"
-          >
+          <Link className="button secondary" from={basePath} to="/individuals">
             Люди
           </Link>
         </Flex>
         <Flex mb={6}>
-          <Link className="button secondary" from="local-business" to="/">
+          <Link className="button secondary" from={basePath} to="/">
             На головну
           </Link>
         </Flex>
@@ -76,12 +70,12 @@ const LocalBusiness = ({ location }) => {
       setEmbedding(location.hash)
     }
   }, [location, tabNames]) // TODO: Fix extra render cycle on extra dependency addition
-  console.log('Individual:location', location) // TODO: Note number of renders
+  console.log(`${basePath}:location`, location) // TODO: Note number of renders
   return (
     <Layout>
       <SEO
         title="Локальний бізнес"
-        pathname="/local-business"
+        pathname={basePath}
         description="Як локальний бізнес та фрілансери потерпають від карантинних заходів та реагують на зміни"
         isArticle
         articleMeta={{
@@ -106,7 +100,7 @@ const LocalBusiness = ({ location }) => {
       <TabSet
         id="main-data"
         tabs={tabs}
-        basePath={location.pathname}
+        basePath={basePath}
         activeTabName={embedding.slice(1)}
       />
     </Layout>

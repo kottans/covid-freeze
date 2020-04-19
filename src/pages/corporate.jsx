@@ -10,6 +10,8 @@ import { Box, Br, Flex } from '@components/Grid'
 import { LiveData, DataSubmissionAnonymityWarning } from '@components/Content'
 import TabSet from '@components/TabSet'
 
+const basePath = '/corporate'
+
 const tabs = [
   {
     name: 'it',
@@ -41,7 +43,7 @@ const tabs = [
         </Box>
         <Flex mb={6}>
           <IntraPageLink
-            basepath="/corporate"
+            basepath={basePath}
             name="main-data"
             className="button secondary"
           >
@@ -81,7 +83,7 @@ const tabs = [
         </Box>
         <Flex mb={7}>
           <IntraPageLink
-            basepath="/corporate"
+            basepath={basePath}
             name="main-data"
             className="button secondary"
           >
@@ -121,7 +123,7 @@ const tabs = [
         </Box>
         <Flex mb={6}>
           <IntraPageLink
-            basepath="/corporate"
+            basepath={basePath}
             name="main-data"
             className="button secondary"
           >
@@ -162,7 +164,7 @@ const tabs = [
         </Box>
         <Flex mb={7}>
           <IntraPageLink
-            basepath="/corporate"
+            basepath={basePath}
             name="main-data"
             className="button secondary"
           >
@@ -180,17 +182,17 @@ const tabs = [
         <Flex mb={2}>
           <Link
             className="button secondary"
-            from="corporate"
+            from={basePath}
             to="/local-business"
           >
             Локальний бізнес і фріланс
           </Link>
-          <Link className="button secondary" from="corporate" to="/individuals">
+          <Link className="button secondary" from={basePath} to="/individuals">
             Люди
           </Link>
         </Flex>
         <Flex mb={6}>
-          <Link className="button secondary" from="corporate" to="/">
+          <Link className="button secondary" from={basePath} to="/">
             На головну
           </Link>
         </Flex>
@@ -210,12 +212,12 @@ const Corporate = ({ location }) => {
       setEmbedding(location.hash)
     }
   }, [location, tabNames]) // TODO: Fix extra render cycle on extra dependency addition
-  console.log('Corporate:location', location) // TODO: Note number of renders
+  console.log(`${basePath}:location`, location) // TODO: Note number of renders
   return (
     <Layout>
       <SEO
         title="Компанії"
-        pathname="/corporate"
+        pathname={basePath}
         description="Як карантинні заходи впливають на компанії і як компанії реагують на зміни"
         isArticle
         articleMeta={{
@@ -248,17 +250,17 @@ const Corporate = ({ location }) => {
         Ознайомтесь із зібраною інформацією та додайте від себе - відкриті дані
         це ви і для вас!
       </Text>
-      <DataSubmissionAnonymityWarning from="corporate" />
+      <DataSubmissionAnonymityWarning from={basePath} />
       <TabSet
         id="main-data"
         tabs={tabs}
-        basePath={location.pathname}
+        basePath={basePath}
         activeTabName={embedding.slice(1)}
       />
       <Text mb={6} style={{ textAlign: 'center' }}>
         Ідея цієї сторінки:{' '}
         <OutboundLink
-          from="corporate"
+          from={basePath}
           to="https://candor.co/hiring-freezes/"
           target="_blank"
         >
@@ -266,7 +268,7 @@ const Corporate = ({ location }) => {
         </OutboundLink>
         {' // '}
         <OutboundLink
-          from="corporate"
+          from={basePath}
           to="https://podbor.io/hiring-freezes/"
           target="_blank"
         >

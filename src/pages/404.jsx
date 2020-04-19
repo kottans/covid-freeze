@@ -15,7 +15,9 @@ const NotFoundPage = () => (
     <Text>
       You just hit a route that doesn&#39;t exist... the sadness.
       <Br />
-      <Link to="/">Take me home.</Link>
+      <Link to="/" from="/404">
+        Take me home.
+      </Link>
     </Text>
   </Layout>
 )
