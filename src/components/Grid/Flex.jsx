@@ -10,6 +10,7 @@ Flex.displayName = `Flex`
 
 Flex.defaultProps = {
   display: `flex`,
+  'flex-wrap': 'wrap',
 }
 
 Flex.propTypes = {
